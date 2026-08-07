@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import PlaceholderImage from './PlaceholderImage.astro';
+import type { PropertyPhoto } from '../../lib/types';
+
+interface Props {
+  photo: PropertyPhoto;
+  class: string;
+  seed?: number;
+  sizes?: string;
+}
+
+const { photo, class: className, seed = 0, sizes = '(min-width: 768px) 40vw, 90vw' } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/properties/**/*.{jpeg,jpg,png,webp}',
+  { eager: true },
+);
+
+const resolved = photo.src ? images[`/src/assets/properties/${photo.src}`]?.default : undefined;
+---
+
+{
+  resolved ? (
+    <Image
+      src={resolved}
+      alt={photo.alt}
+      class={`${className} object-cover`}
+      widths={[400, 800, 1200]}
+      sizes={sizes}
+      format="webp"
+      quality="mid"
+    />
+  ) : (
+    <PlaceholderImage label={photo.alt} seed={seed} class={className} />
+  )
+}

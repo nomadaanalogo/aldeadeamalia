@@ -1,0 +1,34 @@
+---
+import { SITE, WHATSAPP_NUMBER } from '../config/properties';
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  `Hola! Quiero consultar disponibilidad en ${SITE.name}.`,
+)}`;
+---
+
+<header class="sticky top-0 z-40 border-b border-stone-200/70 bg-stone-50/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+    <a href="#top" class="flex items-center gap-2.5">
+      <img src="/favicon-512.png" alt="" width="32" height="32" class="h-8 w-8" />
+      <span class="font-display text-lg font-medium tracking-tight text-stone-900">
+        {SITE.shortName}
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium text-stone-600 sm:flex">
+      <a href="#casas" class="transition hover:text-stone-900">Las casas</a>
+      <a href="#reservar" class="transition hover:text-stone-900">Disponibilidad</a>
+      <a href="#ubicacion" class="transition hover:text-stone-900">Ubicación</a>
+      <a href="#preguntas" class="transition hover:text-stone-900">Preguntas frecuentes</a>
+    </nav>
+
+    <a
+      href={waHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-stone-700 sm:px-5"
+    >
+      WhatsApp
+    </a>
+  </div>
+</header>

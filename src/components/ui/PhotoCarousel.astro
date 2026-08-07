@@ -1,0 +1,112 @@
+---
+import PropertyPhotoTile from './PropertyPhotoTile.astro';
+import type { PropertyPhoto } from '../../lib/types';
+
+interface Props {
+  photos: PropertyPhoto[];
+  name: string;
+  class?: string;
+}
+
+const { photos, name, class: className = '' } = Astro.props;
+---
+
+<div class={`group relative min-w-0 ${className}`} data-gallery>
+  <div
+    class="scrollbar-hidden flex snap-x snap-mandatory overflow-x-auto scroll-smooth rounded-3xl"
+    data-gallery-track
+  >
+    {
+      photos.map((photo, i) => (
+        <div class="aspect-4/3 w-full shrink-0 snap-start" data-gallery-slide>
+          <PropertyPhotoTile photo={photo} seed={i} class="h-full w-full" sizes="(min-width: 768px) 40vw, 100vw" />
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    photos.length > 1 && (
+      <>
+        <button
+          type="button"
+          data-gallery-prev
+          aria-label={`Foto anterior de ${name}`}
+          class="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-700 shadow-md transition hover:bg-white sm:opacity-0 sm:group-hover:opacity-100"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          data-gallery-next
+          aria-label={`Foto siguiente de ${name}`}
+          class="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-700 shadow-md transition hover:bg-white sm:opacity-0 sm:group-hover:opacity-100"
+        >
+          ›
+        </button>
+        <span
+          data-gallery-counter
+          class="absolute bottom-3 right-3 rounded-full bg-stone-900/70 px-2.5 py-1 text-xs font-medium text-white"
+        >
+          1 / {photos.length}
+        </span>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  function initGalleries() {
+    document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((root) => {
+      if (root.dataset.galleryInit === 'true') return;
+      root.dataset.galleryInit = 'true';
+
+      const track = root.querySelector<HTMLElement>('[data-gallery-track]');
+      const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-gallery-slide]'));
+      const prevBtn = root.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+      const nextBtn = root.querySelector<HTMLButtonElement>('[data-gallery-next]');
+      const counter = root.querySelector<HTMLElement>('[data-gallery-counter]');
+      if (!track || slides.length === 0) return;
+
+      const currentIndex = () => {
+        const trackLeft = track.getBoundingClientRect().left;
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        slides.forEach((slide, i) => {
+          const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+        return closestIndex;
+      };
+
+      const goTo = (index: number) => {
+        const clamped = Math.max(0, Math.min(index, slides.length - 1));
+        slides[clamped].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      };
+
+      const updateCounter = () => {
+        if (counter) counter.textContent = `${currentIndex() + 1} / ${slides.length}`;
+      };
+
+      prevBtn?.addEventListener('click', () => goTo(currentIndex() - 1));
+      nextBtn?.addEventListener('click', () => goTo(currentIndex() + 1));
+      track.addEventListener('scroll', updateCounter, { passive: true });
+    });
+  }
+
+  initGalleries();
+  document.addEventListener('astro:page-load', initGalleries);
+</script>

@@ -1,0 +1,41 @@
+---
+import { SITE, WHATSAPP_NUMBER } from '../config/properties';
+
+const year = new Date().getFullYear();
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}`;
+---
+
+<footer class="border-t border-stone-200 bg-stone-100/60">
+  <div class="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <img src="/favicon-512.png" alt="" width="28" height="28" class="h-7 w-7" />
+          <p class="font-display text-lg font-medium text-stone-900">{SITE.shortName}</p>
+        </div>
+        <p class="mt-2 max-w-xs text-sm text-stone-500">{SITE.location}</p>
+      </div>
+
+      <div class="flex flex-col gap-2 text-sm">
+        <a href="#casas" class="text-stone-600 transition hover:text-stone-900">Las casas</a>
+        <a href="#reservar" class="text-stone-600 transition hover:text-stone-900">Disponibilidad</a>
+        <a href="#ubicacion" class="text-stone-600 transition hover:text-stone-900">Ubicación</a>
+        <a href="#preguntas" class="text-stone-600 transition hover:text-stone-900">Preguntas frecuentes</a>
+      </div>
+
+      <div class="flex flex-col gap-2 text-sm">
+        <a href={waHref} target="_blank" rel="noopener noreferrer" class="text-stone-600 transition hover:text-stone-900">
+          WhatsApp
+        </a>
+        <a href="mailto:hola@aldeadeamalia.com" class="text-stone-600 transition hover:text-stone-900">
+          hola@aldeadeamalia.com
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-2 border-t border-stone-200 pt-6 text-xs text-stone-400 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {SITE.shortName}. Todos los derechos reservados.</p>
+      <p>Reservas sin pagos online — se confirman directamente por WhatsApp.</p>
+    </div>
+  </div>
+</footer>

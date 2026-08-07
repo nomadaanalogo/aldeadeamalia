@@ -1,0 +1,43 @@
+---
+const faqs = [
+  {
+    q: '¿Cómo se hace la reserva?',
+    a: 'Elegís las fechas en el calendario, revisás el precio estimado y nos escribís por WhatsApp con esos datos ya cargados. Coordinamos todo directamente con vos, sin pagos online.',
+  },
+  {
+    q: '¿Cuál es el horario de check-in y check-out?',
+    a: 'Lo coordinamos con vos por WhatsApp al confirmar la reserva, según la fecha y la disponibilidad.',
+  },
+  {
+    q: '¿Se admiten mascotas?',
+    a: 'Consultanos por WhatsApp antes de reservar y te confirmamos.',
+  },
+  {
+    q: '¿Cuál es la estadía mínima?',
+    a: 'Varía según la casa y la temporada. El calendario te muestra la estadía mínima vigente al elegir tus fechas.',
+  },
+  {
+    q: '¿El precio que muestra el calendario es definitivo?',
+    a: 'Es un precio estimado calculado con la tarifa vigente. El monto final y las condiciones de la reserva se confirman por WhatsApp.',
+  },
+];
+---
+
+<section id="preguntas" class="mx-auto max-w-3xl px-5 py-20 sm:px-8 sm:py-28">
+  <p class="text-center text-sm font-medium uppercase tracking-[0.2em] text-stone-400">Ayuda</p>
+  <h2 class="font-display mt-3 text-center text-3xl font-medium text-stone-900 sm:text-4xl">
+    Preguntas frecuentes
+  </h2>
+
+  <div class="mt-10 divide-y divide-stone-200 border-t border-stone-200">
+    {faqs.map((item) => (
+      <details class="group py-5">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-medium text-stone-900">
+          {item.q}
+          <span class="shrink-0 text-xl text-stone-400 transition group-open:rotate-45">+</span>
+        </summary>
+        <p class="mt-3 leading-relaxed text-stone-600">{item.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

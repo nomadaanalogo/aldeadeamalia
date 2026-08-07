@@ -1,0 +1,43 @@
+---
+import { SITE } from '../config/properties';
+
+const highlights = [
+  'Zona residencial y tranquila',
+  'A pocos minutos en auto de las playas y balnearios del sur (zona Punta Mogotes)',
+  'Cerca de Mute y la costa sur',
+  'Fácil acceso en auto y transporte público',
+];
+---
+
+<section id="ubicacion" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+  <div class="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
+    <div>
+      <p class="text-sm font-medium uppercase tracking-[0.2em] text-stone-400">Ubicación</p>
+      <h2 class="font-display mt-3 text-3xl font-medium text-stone-900 sm:text-4xl">
+        Sur de Mar del Plata
+      </h2>
+      <p class="mt-4 leading-relaxed text-stone-600">
+        Las dos casas están en una zona residencial tranquila del sur de Mar del Plata, a pocos
+        minutos en auto de las playas y balnearios del sur, la zona de Punta Mogotes y Mute.
+      </p>
+      <ul class="mt-6 space-y-3 text-sm text-stone-700">
+        {highlights.map((item) => (
+          <li class="flex items-center gap-2.5">
+            <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-stone-400"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="aspect-square overflow-hidden rounded-3xl ring-1 ring-stone-200 sm:aspect-4/3">
+      <iframe
+        title={`Mapa de ${SITE.areaLabel}`}
+        src={`https://www.google.com/maps?q=${SITE.coords.lat},${SITE.coords.lng}&z=15&output=embed`}
+        class="h-full w-full border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

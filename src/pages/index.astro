@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import PropertyShowcase from '../components/PropertyShowcase.astro';
+import Location from '../components/Location.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+import BookingWidget from '../components/booking/BookingWidget';
+import { PROPERTIES, SITE } from '../config/properties';
+
+const jsonLd = PROPERTIES.map((property) => ({
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: `${property.name} — ${SITE.name}`,
+  description: property.description,
+  image: `${SITE.url}/og-image.jpg`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Mar del Plata',
+    addressRegion: 'Buenos Aires',
+    addressCountry: 'AR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE.coords.lat,
+    longitude: SITE.coords.lng,
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Mar del Plata',
+  },
+  numberOfRooms: property.capacity.bedrooms,
+  occupancy: {
+    '@type': 'QuantitativeValue',
+    maxValue: property.capacity.guests,
+  },
+  amenityFeature: property.amenities.map((amenity) => ({
+    '@type': 'LocationFeatureSpecification',
+    name: amenity.label,
+    value: true,
+  })),
+  priceRange: `${property.pricing.currency} ${property.pricing.pricePerNight}`,
+  url: `${SITE.url}/#${property.slug}`,
+}));
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    {jsonLd.map((entry) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(entry)} />
+    ))}
+  </Fragment>
+
+  <Header />
+
+  <main>
+    <Hero />
+
+    <section id="casas" class="mx-auto max-w-6xl space-y-24 px-5 py-20 sm:space-y-32 sm:px-8 sm:py-28">
+      {PROPERTIES.map((property, i) => (
+        <PropertyShowcase property={property} reversed={i % 2 === 1} />
+      ))}
+    </section>
+
+    <section id="reservar" class="bg-stone-100/60 px-5 py-20 sm:px-8 sm:py-28">
+      <p class="text-center text-sm font-medium uppercase tracking-[0.2em] text-stone-400">
+        Disponibilidad
+      </p>
+      <h2 class="font-display mt-3 text-center text-3xl font-medium text-stone-900 sm:text-4xl">
+        Elegí tus fechas
+      </h2>
+      <p class="mx-auto mt-3 max-w-md text-center text-stone-500">
+        El calendario se actualiza con la disponibilidad real de cada casa.
+      </p>
+
+      <div class="mt-12">
+        <BookingWidget client:visible properties={PROPERTIES} />
+      </div>
+    </section>
+
+    <Location />
+    <FAQ />
+  </main>
+
+  <Footer />
+</BaseLayout>

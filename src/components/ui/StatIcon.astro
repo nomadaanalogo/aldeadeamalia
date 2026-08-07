@@ -1,0 +1,21 @@
+---
+export type StatIconName = 'guests' | 'bedrooms' | 'beds' | 'bathrooms';
+
+interface Props {
+  icon: StatIconName;
+  class?: string;
+}
+
+const { icon, class: className = 'h-5 w-5' } = Astro.props;
+
+const paths: Record<StatIconName, string> = {
+  guests: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 21a7.5 7.5 0 0 1 15 0',
+  bedrooms: 'M4 21V9a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v12M4 15h16M8 15v-3.5a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 1 1.5 1.5V15',
+  beds: 'M3 19v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 19v2M21 19v2M3 13V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 11h18',
+  bathrooms: 'M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3ZM6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 1.8 1M9 8h.01',
+};
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class={className}>
+  <path d={paths[icon]} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

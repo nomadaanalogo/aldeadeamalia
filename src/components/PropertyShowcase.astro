@@ -1,0 +1,74 @@
+---
+import PhotoCarousel from './ui/PhotoCarousel.astro';
+import AmenityIcon from './ui/AmenityIcon.astro';
+import StatIcon from './ui/StatIcon.astro';
+import type { Property } from '../lib/types';
+
+interface Props {
+  property: Property;
+  reversed?: boolean;
+}
+
+const { property, reversed = false } = Astro.props;
+
+const stats: { icon: 'guests' | 'bedrooms' | 'beds' | 'bathrooms'; label: string }[] = [
+  { icon: 'guests', label: `${property.capacity.guests} huéspedes` },
+  { icon: 'bedrooms', label: `${property.capacity.bedrooms} dormitorios` },
+  { icon: 'beds', label: `${property.capacity.beds} camas` },
+  {
+    icon: 'bathrooms',
+    label: `${property.capacity.bathrooms} baño${property.capacity.bathrooms === 1 ? '' : 's'}`,
+  },
+];
+---
+
+<article id={property.slug} class="grid gap-8 md:grid-cols-2 md:gap-12 md:items-center">
+  <PhotoCarousel photos={property.photos} name={property.name} class={reversed ? 'md:order-2' : ''} />
+
+  <div class={reversed ? 'md:order-1' : ''}>
+    <h3 class="font-display text-3xl font-medium text-stone-900 sm:text-4xl">{property.name}</h3>
+    <p class="mt-2 text-lg text-stone-500">{property.tagline}</p>
+    <p class="mt-5 leading-relaxed text-stone-600">{property.description}</p>
+
+    <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-stone-600">
+      {stats.map((stat) => (
+        <span class="flex items-center gap-1.5">
+          <StatIcon icon={stat.icon} class="h-4.5 w-4.5 shrink-0 text-sky-600" />
+          {stat.label}
+        </span>
+      ))}
+    </div>
+
+    <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-stone-700">
+      {property.amenities.map((amenity) => (
+        <li class="flex items-center gap-2.5">
+          <AmenityIcon icon={amenity.icon} class="h-4.5 w-4.5 shrink-0 text-sky-600" />
+          <span>{amenity.label}</span>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href="#reservar"
+      data-property-select={property.slug}
+      class="mt-8 inline-block rounded-full bg-stone-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-stone-700"
+    >
+      Ver disponibilidad de {property.name}
+    </a>
+  </div>
+</article>
+
+<script>
+  // Los botones "Ver disponibilidad de [casa]" además de llevar a #reservar,
+  // le avisan al widget de reservas (React) qué casa preseleccionar.
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as HTMLElement)?.closest<HTMLElement>('[data-property-select]');
+    if (!trigger) return;
+
+    const slug = trigger.dataset.propertySelect;
+    if (!slug) return;
+
+    sessionStorage.setItem('selected-property', slug);
+    window.dispatchEvent(new CustomEvent('select-property', { detail: slug }));
+  });
+</script>
