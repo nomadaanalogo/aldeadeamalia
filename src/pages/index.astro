@@ -72,10 +72,12 @@ const jsonLd = PROPERTIES.map((property) => {
     <Hero />
 
     <section id="casas" class="relative overflow-hidden py-20 sm:py-28">
-      <BackgroundIllustration
-        src="/images/Ilustraciones/ballena-1.png"
-        class="absolute -left-16 top-4 w-80 rotate-3 opacity-[0.06] sm:w-120"
-      />
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <BackgroundIllustration
+          src="/images/Ilustraciones/ballena-1.png"
+          class="w-160 rotate-3 opacity-[0.08] sm:w-260"
+        />
+      </div>
       <div class="relative mx-auto max-w-6xl space-y-24 px-5 sm:space-y-32 sm:px-8">
         {PROPERTIES.map((property, i) => (
           <PropertyShowcase property={property} reversed={i % 2 === 1} />
