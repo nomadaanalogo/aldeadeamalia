@@ -150,14 +150,14 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
     ];
 
     if (checkIn && checkOut) {
-      lines.push(`📅 Check-in: ${formatDisplayDate(checkIn)}`);
-      lines.push(`📅 Check-out: ${formatDisplayDate(checkOut)}`);
-      lines.push(`🌙 ${nights} noche${nights === 1 ? '' : 's'}`);
+      lines.push(`Check-in: ${formatDisplayDate(checkIn)}`);
+      lines.push(`Check-out: ${formatDisplayDate(checkOut)}`);
+      lines.push(`${nights} noche${nights === 1 ? '' : 's'}`);
     }
-    lines.push(`👥 ${guests} huésped${guests === 1 ? '' : 'es'}`);
+    lines.push(`${guests} huésped${guests === 1 ? '' : 'es'}`);
 
     if (checkIn && checkOut && meetsMinStay && total !== null) {
-      lines.push(`💰 Total estimado: ${formatPrice(total, property.pricing.currency)}`);
+      lines.push(`Total estimado: ${formatPrice(total, property.pricing.currency)}`);
     }
 
     lines.push('', '¿Está disponible?');
