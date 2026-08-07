@@ -4,10 +4,11 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import PropertyShowcase from '../components/PropertyShowcase.astro';
 import Location from '../components/Location.astro';
+import Interests from '../components/Interests.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 import BookingWidget from '../components/booking/BookingWidget';
-import SeaCreature from '../components/ui/SeaCreature.astro';
+import BackgroundIllustration from '../components/ui/BackgroundIllustration.astro';
 import { PROPERTIES, SITE } from '../config/properties';
 
 const jsonLd = PROPERTIES.map((property) => {
@@ -68,16 +69,22 @@ const jsonLd = PROPERTIES.map((property) => {
   <main>
     <Hero />
 
-    <section id="casas" class="mx-auto max-w-6xl space-y-24 px-5 py-20 sm:space-y-32 sm:px-8 sm:py-28">
-      {PROPERTIES.map((property, i) => (
-        <PropertyShowcase property={property} reversed={i % 2 === 1} />
-      ))}
+    <section id="casas" class="relative overflow-hidden py-20 sm:py-28">
+      <BackgroundIllustration
+        src="/images/Ilustraciones/ballena-1.png"
+        class="absolute -left-16 top-4 w-80 rotate-3 opacity-[0.06] sm:w-120"
+      />
+      <div class="relative mx-auto max-w-6xl space-y-24 px-5 sm:space-y-32 sm:px-8">
+        {PROPERTIES.map((property, i) => (
+          <PropertyShowcase property={property} reversed={i % 2 === 1} />
+        ))}
+      </div>
     </section>
 
     <section id="reservar" class="relative overflow-hidden bg-stone-100/60 px-5 py-20 sm:px-8 sm:py-28">
-      <SeaCreature
-        name="whale"
-        class="pointer-events-none absolute -right-16 -top-6 h-auto w-95 text-sky-600/10 sm:w-140"
+      <BackgroundIllustration
+        src="/images/Ilustraciones/ballena-2.png"
+        class="absolute -right-10 -top-10 w-90 -rotate-6 opacity-[0.07] sm:w-130"
       />
       <p class="relative text-center text-sm font-medium uppercase tracking-[0.2em] text-stone-400">
         Disponibilidad
@@ -95,6 +102,7 @@ const jsonLd = PROPERTIES.map((property) => {
     </section>
 
     <Location />
+    <Interests />
     <FAQ />
   </main>
 

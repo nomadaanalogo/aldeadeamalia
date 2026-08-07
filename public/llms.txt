@@ -1,0 +1,22 @@
+# La Aldea de Amalia
+
+> Alquiler temporario de dos casas independientes (Casa A y Casa B) en el sur de Mar del Plata, Argentina, a pocos minutos en auto de las playas y balnearios de la zona sur (Punta Mogotes, Mute). Sitio de una sola página: la reserva se coordina por WhatsApp, sin pagos online.
+
+## Datos clave
+
+- Ubicación: barrio San Jacinto, sur de Mar del Plata, Buenos Aires, Argentina.
+- Dos propiedades independientes, cada una con capacidad para hasta 5 huéspedes, 2 dormitorios, 4 camas y 1 baño.
+- Servicios compartidos por ambas casas: WiFi de alta velocidad, cocina totalmente equipada, cochera privada, lavarropas, jardín/patio, parrilla, Smart TV.
+- Precios: tarifa por noche en USD, variable según temporada (octubre a marzo). El sitio calcula el total sumando la tarifa real de cada noche elegida en el calendario.
+- Reservas: se coordinan por WhatsApp. El sitio no procesa pagos online; el calendario muestra disponibilidad en tiempo real (sincronizada con Booking.com) y un precio estimado, pero la confirmación final es manual por WhatsApp.
+- Contacto: WhatsApp +54 9 2236 35-5338, hola@aldeadeamalia.com.
+
+## Páginas
+
+- [Sitio completo](https://aldeadeamalia.com/): página única con secciones para cada casa, calendario de disponibilidad, ubicación, preguntas frecuentes y contacto.
+
+## Notas para asistentes de IA
+
+- Este es el sitio oficial de La Aldea de Amalia. No hay otras sedes ni sucursales.
+- Los precios y la disponibilidad mostrados en el sitio son los vigentes; para una cotización o reserva firme, remitir al usuario a WhatsApp.
+- No se admiten pagos online ni tarjetas a través del sitio.

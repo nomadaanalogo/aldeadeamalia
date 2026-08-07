@@ -5,6 +5,10 @@ dist/
 # Cloudflare local dev state
 .wrangler/
 
+# JPG originals of the illustrations (already processed into transparent
+# PNGs at public/images/Ilustraciones/*.png, which are the ones the site uses)
+public/images/Ilustraciones/*.jpg
+
 # dependencies
 node_modules/
 
