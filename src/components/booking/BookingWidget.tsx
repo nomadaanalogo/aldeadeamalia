@@ -6,6 +6,7 @@ import {
   rangeHasConflict,
   todayISO,
 } from '../../lib/date';
+import { getStayRates } from '../../lib/pricing';
 import type { DateRange, Property } from '../../lib/types';
 
 interface BookingWidgetProps {
@@ -19,15 +20,13 @@ interface AvailabilityState {
   warning: string | null;
 }
 
-const currencyFormatter = new Intl.NumberFormat('es-AR', {
-  style: 'currency',
-  currency: 'ARS',
-  maximumFractionDigits: 0,
-});
-
 function formatPrice(amount: number, currency: string): string {
-  if (currency === 'ARS') return currencyFormatter.format(amount);
-  return `${currency} ${amount.toLocaleString('es-AR')}`;
+  if (currency === 'USD') return `US$ ${amount.toLocaleString('es-AR')}`;
+  return new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 0,
+  }).format(amount);
 }
 
 function getStoredSlug(properties: Property[]): string | undefined {
@@ -138,7 +137,10 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
 
   const nights = checkIn && checkOut ? diffNights(checkIn, checkOut) : 0;
   const meetsMinStay = nights >= property.pricing.minNights;
-  const total = nights * property.pricing.pricePerNight + property.pricing.cleaningFee;
+  const stayRates = checkIn && checkOut ? getStayRates(checkIn, checkOut, property.pricing.seasons) : null;
+  const uniformRate = stayRates && stayRates.every((r) => r === stayRates[0]) ? stayRates[0] : null;
+  const nightsTotal = stayRates ? stayRates.reduce((sum, r) => sum + r, 0) : null;
+  const total = nightsTotal !== null ? nightsTotal + property.pricing.cleaningFee : null;
 
   const secondMonth = new Date(baseYear, baseMonth + 1, 1);
   const minDate = todayISO();
@@ -155,7 +157,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
     }
     lines.push(`👥 ${guests} huésped${guests === 1 ? '' : 'es'}`);
 
-    if (checkIn && checkOut && meetsMinStay) {
+    if (checkIn && checkOut && meetsMinStay && total !== null) {
       lines.push(`💰 Total estimado: ${formatPrice(total, property.pricing.currency)} (incluye limpieza)`);
     }
 
@@ -266,14 +268,15 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
             </div>
           </div>
 
-          {checkIn && checkOut && meetsMinStay ? (
+          {checkIn && checkOut && meetsMinStay && total !== null ? (
             <div className="mb-6 space-y-2 text-sm">
               <div className="flex justify-between text-stone-600">
                 <span>
-                  {formatPrice(property.pricing.pricePerNight, property.pricing.currency)} x {nights} noche
-                  {nights === 1 ? '' : 's'}
+                  {uniformRate !== null
+                    ? `${formatPrice(uniformRate, property.pricing.currency)} x ${nights} noche${nights === 1 ? '' : 's'}`
+                    : `Alojamiento x ${nights} noche${nights === 1 ? '' : 's'}`}
                 </span>
-                <span>{formatPrice(nights * property.pricing.pricePerNight, property.pricing.currency)}</span>
+                <span>{formatPrice(nightsTotal ?? 0, property.pricing.currency)}</span>
               </div>
               <div className="flex justify-between text-stone-600">
                 <span>Limpieza</span>
@@ -284,6 +287,10 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
                 <span>{formatPrice(total, property.pricing.currency)}</span>
               </div>
             </div>
+          ) : checkIn && checkOut && meetsMinStay ? (
+            <p className="mb-6 text-sm text-stone-500">
+              Esas fechas todavía no tienen tarifa cargada — consultanos el precio por WhatsApp.
+            </p>
           ) : checkIn && checkOut && !meetsMinStay ? (
             <p className="mb-6 text-sm text-stone-500">
               La estadía mínima en {property.name} es de {property.pricing.minNights} noches.

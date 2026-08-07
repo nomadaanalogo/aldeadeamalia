@@ -24,6 +24,18 @@ export const SITE = {
   url: 'https://aldeadeamalia.com',
 };
 
+/**
+ * Tarifas por temporada (USD/noche), iguales para las dos casas.
+ * Temporada 2026/2027, según lo indicado por el cliente.
+ */
+const SEASON_RATES: Property['pricing']['seasons'] = [
+  { start: '2026-10-01', end: '2026-10-31', pricePerNight: 37 },
+  { start: '2026-11-01', end: '2026-12-28', pricePerNight: 40 },
+  { start: '2026-12-29', end: '2027-01-15', pricePerNight: 58 },
+  { start: '2027-01-16', end: '2027-01-31', pricePerNight: 45 },
+  { start: '2027-02-01', end: '2027-03-31', pricePerNight: 40 },
+];
+
 /** Lista de servicios compartida: ambas casas ofrecen exactamente lo mismo. */
 const SHARED_AMENITIES: Property['amenities'] = [
   { icon: 'wifi', label: 'WiFi de alta velocidad' },
@@ -50,10 +62,10 @@ export const PROPERTIES: Property[] = [
     capacity: { guests: 5, bedrooms: 2, beds: 4, bathrooms: 1 },
     amenities: SHARED_AMENITIES,
     pricing: {
-      currency: 'ARS',
-      // TODO: precio de ejemplo — ajustar al valor real.
-      pricePerNight: 60000,
-      cleaningFee: 8000,
+      currency: 'USD',
+      seasons: SEASON_RATES,
+      // TODO: falta el valor real del costo de limpieza en USD.
+      cleaningFee: 0,
       minNights: 2,
     },
     icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
@@ -77,10 +89,10 @@ export const PROPERTIES: Property[] = [
     capacity: { guests: 5, bedrooms: 2, beds: 4, bathrooms: 1 },
     amenities: SHARED_AMENITIES,
     pricing: {
-      currency: 'ARS',
-      // TODO: precio de ejemplo — ajustar al valor real.
-      pricePerNight: 52000,
-      cleaningFee: 7000,
+      currency: 'USD',
+      seasons: SEASON_RATES,
+      // TODO: falta el valor real del costo de limpieza en USD.
+      cleaningFee: 0,
       minNights: 2,
     },
     icalUrl: 'https://ical.booking.com/v1/export?t=22d86a32-0a7b-4ff4-a004-92aeee35b089',

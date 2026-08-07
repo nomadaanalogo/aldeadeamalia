@@ -20,6 +20,14 @@ export interface PropertyAmenity {
   label: string;
 }
 
+export interface SeasonRate {
+  /** ISO date (yyyy-mm-dd), inclusive */
+  start: string;
+  /** ISO date (yyyy-mm-dd), inclusive */
+  end: string;
+  pricePerNight: number;
+}
+
 export type AmenityIcon =
   | 'wifi'
   | 'kitchen'
@@ -50,7 +58,7 @@ export interface Property {
   amenities: PropertyAmenity[];
   pricing: {
     currency: 'ARS' | 'USD';
-    pricePerNight: number;
+    seasons: SeasonRate[];
     cleaningFee: number;
     minNights: number;
   };

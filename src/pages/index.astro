@@ -9,40 +9,50 @@ import Footer from '../components/Footer.astro';
 import BookingWidget from '../components/booking/BookingWidget';
 import { PROPERTIES, SITE } from '../config/properties';
 
-const jsonLd = PROPERTIES.map((property) => ({
-  '@context': 'https://schema.org',
-  '@type': 'LodgingBusiness',
-  name: `${property.name} — ${SITE.name}`,
-  description: property.description,
-  image: `${SITE.url}/og-image.jpg`,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Mar del Plata',
-    addressRegion: 'Buenos Aires',
-    addressCountry: 'AR',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: SITE.coords.lat,
-    longitude: SITE.coords.lng,
-  },
-  areaServed: {
-    '@type': 'City',
-    name: 'Mar del Plata',
-  },
-  numberOfRooms: property.capacity.bedrooms,
-  occupancy: {
-    '@type': 'QuantitativeValue',
-    maxValue: property.capacity.guests,
-  },
-  amenityFeature: property.amenities.map((amenity) => ({
-    '@type': 'LocationFeatureSpecification',
-    name: amenity.label,
-    value: true,
-  })),
-  priceRange: `${property.pricing.currency} ${property.pricing.pricePerNight}`,
-  url: `${SITE.url}/#${property.slug}`,
-}));
+const jsonLd = PROPERTIES.map((property) => {
+  const rates = property.pricing.seasons.map((s) => s.pricePerNight);
+  const minRate = Math.min(...rates);
+  const maxRate = Math.max(...rates);
+  const priceRange =
+    minRate === maxRate
+      ? `${property.pricing.currency} ${minRate}`
+      : `${property.pricing.currency} ${minRate}-${maxRate}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LodgingBusiness',
+    name: `${property.name} — ${SITE.name}`,
+    description: property.description,
+    image: `${SITE.url}/og-image.jpg`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mar del Plata',
+      addressRegion: 'Buenos Aires',
+      addressCountry: 'AR',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: SITE.coords.lat,
+      longitude: SITE.coords.lng,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Mar del Plata',
+    },
+    numberOfRooms: property.capacity.bedrooms,
+    occupancy: {
+      '@type': 'QuantitativeValue',
+      maxValue: property.capacity.guests,
+    },
+    amenityFeature: property.amenities.map((amenity) => ({
+      '@type': 'LocationFeatureSpecification',
+      name: amenity.label,
+      value: true,
+    })),
+    priceRange,
+    url: `${SITE.url}/#${property.slug}`,
+  };
+});
 ---
 
 <BaseLayout>
