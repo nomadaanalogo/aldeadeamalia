@@ -33,12 +33,21 @@ const highlights = [
           </li>
         ))}
       </ul>
+
+      <a
+        href={SITE.googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-block text-sm font-medium text-sky-700 underline underline-offset-2 hover:text-sky-800"
+      >
+        Ver en Google Maps
+      </a>
     </div>
 
     <div class="aspect-square overflow-hidden rounded-3xl ring-1 ring-stone-200 sm:aspect-4/3">
       <iframe
-        title={`Mapa de ${SITE.areaLabel}`}
-        src={`https://www.google.com/maps?q=${SITE.coords.lat},${SITE.coords.lng}&z=15&output=embed`}
+        title={`Mapa de ${SITE.name}`}
+        src={`https://www.google.com/maps?q=${SITE.coords.lat},${SITE.coords.lng}&z=16&output=embed`}
         class="h-full w-full border-0"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"

@@ -14,6 +14,8 @@ export const SITE = {
   areaLabel: 'sur de Mar del Plata',
   // Coordenadas reales (de la ficha de Google Maps del lugar) — se usan para centrar el mapa.
   coords: { lat: -38.0895964, lng: -57.5931634 },
+  // Ficha real de Google Business Profile ("La Aldea de Amalia").
+  googleMapsUrl: 'https://maps.app.goo.gl/PvJnwfPA6WLdMQXu6',
   description: 'Dos casas cómodas y familiares, pensadas para que te sientas como en tu hogar.',
   // Título y descripción para buscadores (SEO) — separados del copy del hero para poder
   // meter las palabras clave de búsqueda sin tocar el tono cercano del sitio.

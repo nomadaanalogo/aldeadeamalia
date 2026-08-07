@@ -37,6 +37,8 @@ const jsonLd = PROPERTIES.map((property) => {
       latitude: SITE.coords.lat,
       longitude: SITE.coords.lng,
     },
+    hasMap: SITE.googleMapsUrl,
+    sameAs: [SITE.googleMapsUrl],
     areaServed: {
       '@type': 'City',
       name: 'Mar del Plata',
