@@ -102,7 +102,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
     }
     window.addEventListener('select-property', handleExternalSelect);
     return () => window.removeEventListener('select-property', handleExternalSelect);
-  });
+  }, [properties]);
 
   function handleSelectDate(iso: string) {
     if (!checkIn || (checkIn && checkOut)) {
