@@ -1,4 +1,6 @@
 ---
+import SeaCreature from './ui/SeaCreature.astro';
+
 const faqs = [
   {
     q: '¿Cómo se hace la reserva?',
@@ -23,21 +25,27 @@ const faqs = [
 ];
 ---
 
-<section id="preguntas" class="mx-auto max-w-3xl px-5 py-20 sm:px-8 sm:py-28">
-  <p class="text-center text-sm font-medium uppercase tracking-[0.2em] text-stone-400">Ayuda</p>
-  <h2 class="font-display mt-3 text-center text-3xl font-medium text-stone-900 sm:text-4xl">
-    Preguntas frecuentes
-  </h2>
+<section id="preguntas" class="relative overflow-hidden px-5 py-20 sm:px-8 sm:py-28">
+  <SeaCreature
+    name="fish"
+    class="pointer-events-none absolute -right-10 top-10 h-auto w-50 text-sky-600/10 sm:w-70"
+  />
+  <div class="relative mx-auto max-w-3xl">
+    <p class="text-center text-sm font-medium uppercase tracking-[0.2em] text-stone-400">Ayuda</p>
+    <h2 class="font-display mt-3 text-center text-3xl font-medium text-stone-900 sm:text-4xl">
+      Preguntas frecuentes
+    </h2>
 
-  <div class="mt-10 divide-y divide-stone-200 border-t border-stone-200">
-    {faqs.map((item) => (
-      <details class="group py-5">
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-medium text-stone-900">
-          {item.q}
-          <span class="shrink-0 text-xl text-stone-400 transition group-open:rotate-45">+</span>
-        </summary>
-        <p class="mt-3 leading-relaxed text-stone-600">{item.a}</p>
-      </details>
-    ))}
+    <div class="mt-10 divide-y divide-stone-200 border-t border-stone-200">
+      {faqs.map((item) => (
+        <details class="group py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-medium text-stone-900">
+            {item.q}
+            <span class="shrink-0 text-xl text-stone-400 transition group-open:rotate-45">+</span>
+          </summary>
+          <p class="mt-3 leading-relaxed text-stone-600">{item.a}</p>
+        </details>
+      ))}
+    </div>
   </div>
 </section>
