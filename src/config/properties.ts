@@ -64,8 +64,6 @@ export const PROPERTIES: Property[] = [
     pricing: {
       currency: 'USD',
       seasons: SEASON_RATES,
-      // TODO: falta el valor real del costo de limpieza en USD.
-      cleaningFee: 0,
       minNights: 2,
     },
     icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
@@ -91,8 +89,6 @@ export const PROPERTIES: Property[] = [
     pricing: {
       currency: 'USD',
       seasons: SEASON_RATES,
-      // TODO: falta el valor real del costo de limpieza en USD.
-      cleaningFee: 0,
       minNights: 2,
     },
     icalUrl: 'https://ical.booking.com/v1/export?t=22d86a32-0a7b-4ff4-a004-92aeee35b089',

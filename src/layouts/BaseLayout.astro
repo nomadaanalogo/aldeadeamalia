@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../config/properties';
+import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton.astro';
 
 interface Props {
   title?: string;
@@ -55,5 +56,6 @@ const pageTitle = title === SITE.metaTitle ? title : `${title} | ${SITE.name}`;
   </head>
   <body class="bg-stone-50 text-stone-800 antialiased">
     <slot />
+    <WhatsAppFloatingButton />
   </body>
 </html>

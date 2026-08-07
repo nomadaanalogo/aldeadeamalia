@@ -1,5 +1,6 @@
 import { buildMonthGrid, isDateBusy, monthLabel, weekdayLabels } from '../../lib/date';
-import type { DateRange } from '../../lib/types';
+import { getNightlyRate } from '../../lib/pricing';
+import type { DateRange, SeasonRate } from '../../lib/types';
 
 interface CalendarProps {
   year: number;
@@ -10,6 +11,7 @@ interface CalendarProps {
   checkIn: string | null;
   checkOut: string | null;
   onSelectDate: (iso: string) => void;
+  seasons: SeasonRate[];
 }
 
 export default function Calendar({
@@ -21,6 +23,7 @@ export default function Calendar({
   checkIn,
   checkOut,
   onSelectDate,
+  seasons,
 }: CalendarProps) {
   const days = buildMonthGrid(year, month);
 
@@ -61,6 +64,7 @@ export default function Calendar({
           const isCheckOut = day.iso === checkOut;
           const inRange = !!checkIn && !!checkOut && day.iso > checkIn && day.iso < checkOut;
           const isEdge = isCheckIn || isCheckOut;
+          const rate = day.inCurrentMonth ? getNightlyRate(day.iso, seasons) : null;
 
           return (
             <div key={day.iso} className={inRange ? 'bg-stone-100' : isCheckIn && checkOut ? 'bg-stone-100 rounded-l-full' : isCheckOut ? 'bg-stone-100 rounded-r-full' : ''}>
@@ -71,14 +75,24 @@ export default function Calendar({
                 aria-label={day.iso}
                 aria-pressed={isEdge}
                 className={[
-                  'flex h-10 w-10 items-center justify-center rounded-full text-sm transition mx-auto',
+                  'flex h-12 w-10 flex-col items-center justify-center gap-0.5 rounded-full text-sm transition mx-auto',
                   !day.inCurrentMonth ? 'invisible' : '',
                   disabled && day.inCurrentMonth ? 'cursor-not-allowed text-stone-300 line-through' : '',
                   !disabled && !isEdge ? 'text-stone-700 hover:bg-stone-200' : '',
                   isEdge ? 'bg-stone-900 text-white hover:bg-stone-900' : '',
                 ].join(' ')}
               >
-                {day.dayOfMonth}
+                <span>{day.dayOfMonth}</span>
+                {rate !== null && (
+                  <span
+                    className={[
+                      'text-[9px] font-normal leading-none',
+                      isEdge ? 'text-white/80' : disabled ? 'text-stone-300' : 'text-sky-600',
+                    ].join(' ')}
+                  >
+                    ${rate}
+                  </span>
+                )}
               </button>
             </div>
           );

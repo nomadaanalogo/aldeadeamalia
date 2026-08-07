@@ -59,7 +59,6 @@ export interface Property {
   pricing: {
     currency: 'ARS' | 'USD';
     seasons: SeasonRate[];
-    cleaningFee: number;
     minNights: number;
   };
   /** Booking.com iCal export URL, consumed by /api/availability/[slug] */

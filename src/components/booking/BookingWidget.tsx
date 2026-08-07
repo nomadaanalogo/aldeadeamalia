@@ -139,8 +139,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
   const meetsMinStay = nights >= property.pricing.minNights;
   const stayRates = checkIn && checkOut ? getStayRates(checkIn, checkOut, property.pricing.seasons) : null;
   const uniformRate = stayRates && stayRates.every((r) => r === stayRates[0]) ? stayRates[0] : null;
-  const nightsTotal = stayRates ? stayRates.reduce((sum, r) => sum + r, 0) : null;
-  const total = nightsTotal !== null ? nightsTotal + property.pricing.cleaningFee : null;
+  const total = stayRates ? stayRates.reduce((sum, r) => sum + r, 0) : null;
 
   const secondMonth = new Date(baseYear, baseMonth + 1, 1);
   const minDate = todayISO();
@@ -158,7 +157,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
     lines.push(`👥 ${guests} huésped${guests === 1 ? '' : 'es'}`);
 
     if (checkIn && checkOut && meetsMinStay && total !== null) {
-      lines.push(`💰 Total estimado: ${formatPrice(total, property.pricing.currency)} (incluye limpieza)`);
+      lines.push(`💰 Total estimado: ${formatPrice(total, property.pricing.currency)}`);
     }
 
     lines.push('', '¿Está disponible?');
@@ -199,6 +198,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
               checkIn={checkIn}
               checkOut={checkOut}
               onSelectDate={handleSelectDate}
+              seasons={property.pricing.seasons}
             />
           </div>
           <div className="hidden md:block">
@@ -211,6 +211,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
               checkIn={checkIn}
               checkOut={checkOut}
               onSelectDate={handleSelectDate}
+              seasons={property.pricing.seasons}
             />
           </div>
         </div>
@@ -276,11 +277,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
                     ? `${formatPrice(uniformRate, property.pricing.currency)} x ${nights} noche${nights === 1 ? '' : 's'}`
                     : `Alojamiento x ${nights} noche${nights === 1 ? '' : 's'}`}
                 </span>
-                <span>{formatPrice(nightsTotal ?? 0, property.pricing.currency)}</span>
-              </div>
-              <div className="flex justify-between text-stone-600">
-                <span>Limpieza</span>
-                <span>{formatPrice(property.pricing.cleaningFee, property.pricing.currency)}</span>
+                <span>{formatPrice(total ?? 0, property.pricing.currency)}</span>
               </div>
               <div className="flex justify-between border-t border-stone-200 pt-2 text-base font-semibold text-stone-900">
                 <span>Total estimado</span>

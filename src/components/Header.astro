@@ -1,9 +1,5 @@
 ---
-import { SITE, WHATSAPP_NUMBER } from '../config/properties';
-
-const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  `Hola! Quiero consultar disponibilidad en ${SITE.name}.`,
-)}`;
+import { SITE } from '../config/properties';
 ---
 
 <header class="sticky top-0 z-40 border-b border-stone-200/70 bg-stone-50/80 backdrop-blur-md">
@@ -23,12 +19,10 @@ const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     </nav>
 
     <a
-      href={waHref}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="#reservar"
       class="rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-stone-700 sm:px-5"
     >
-      WhatsApp
+      Reservar
     </a>
   </div>
 </header>
