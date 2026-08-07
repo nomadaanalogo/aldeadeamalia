@@ -3,10 +3,9 @@ import type { Property } from '../lib/types';
 /**
  * Único número de WhatsApp para todas las propiedades (decisión del cliente:
  * "que nos hablen y les damos precios/detalles por WhatsApp").
- * TODO: reemplazar por el número real antes de publicar.
- * Formato internacional, solo dígitos, sin "+" (ej. Argentina: 549 + código de área sin 0 + número sin 15).
+ * +54 9 2236 35-5338.
  */
-export const WHATSAPP_NUMBER = '5492235550000';
+export const WHATSAPP_NUMBER = '5492236355338';
 
 export const SITE = {
   name: 'La Aldea de Amalia',
