@@ -30,11 +30,14 @@ export const SITE = {
  * Temporada 2026/2027, según lo indicado por el cliente.
  */
 const SEASON_RATES: Property['pricing']['seasons'] = [
-  { start: '2026-10-01', end: '2026-10-31', pricePerNight: 37 },
-  { start: '2026-11-01', end: '2026-12-28', pricePerNight: 40 },
-  { start: '2026-12-29', end: '2027-01-15', pricePerNight: 58 },
-  { start: '2027-01-16', end: '2027-01-31', pricePerNight: 45 },
-  { start: '2027-02-01', end: '2027-03-31', pricePerNight: 40 },
+  { start: '2026-10-01', end: '2026-10-31', pricePerNight: 42 },
+  { start: '2026-11-01', end: '2026-11-30', pricePerNight: 40 },
+  { start: '2026-12-01', end: '2026-12-28', pricePerNight: 45 },
+  { start: '2026-12-29', end: '2026-12-31', pricePerNight: 63 },
+  { start: '2027-01-01', end: '2027-01-15', pricePerNight: 68 },
+  { start: '2027-01-16', end: '2027-01-31', pricePerNight: 55 },
+  { start: '2027-02-01', end: '2027-02-28', pricePerNight: 50 },
+  { start: '2027-03-01', end: '2027-03-31', pricePerNight: 45 },
 ];
 
 /** Lista de servicios compartida: ambas casas ofrecen exactamente lo mismo. */
@@ -70,12 +73,12 @@ export const PROPERTIES: Property[] = [
     icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
-      { alt: 'Casa A — fachada' },
-      { alt: 'Casa A — living comedor' },
-      { alt: 'Casa A — cocina' },
-      { alt: 'Casa A — dormitorio principal' },
-      { alt: 'Casa A — baño' },
-      { alt: 'Casa A — patio y parrilla' },
+      { alt: 'Casa A — exterior y jardín', src: 'casa-a/exterior.webp' },
+      { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
+      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
+      { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
+      { alt: 'Casa A — vista del interior', src: 'casa-a/interior.webp' },
+      { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
     ],
   },
   {
