@@ -307,7 +307,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
             Reservar por WhatsApp
           </a>
           <p className="mt-3 text-center text-xs text-stone-400">
-            Sin pagos online. Coordinás y confirmás la reserva directamente con nosotros.
+            Coordinás y confirmás la reserva directamente con nosotros por WhatsApp.
           </p>
         </div>
       </div>
