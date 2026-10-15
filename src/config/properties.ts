@@ -73,9 +73,9 @@ export const PROPERTIES: Property[] = [
     icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
+      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
       { alt: 'Casa A — exterior y jardín', src: 'casa-a/exterior.webp' },
       { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
-      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
       { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
       { alt: 'Casa A — vista del interior', src: 'casa-a/interior.webp' },
       { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
