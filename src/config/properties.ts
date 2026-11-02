@@ -48,7 +48,6 @@ const SHARED_AMENITIES: Property['amenities'] = [
   { icon: 'washer', label: 'Lavarropas' },
   { icon: 'garden', label: 'Jardín / patio' },
   { icon: 'grill', label: 'Parrilla' },
-  { icon: 'tv', label: 'Smart TV' },
 ];
 
 /**
@@ -74,7 +73,6 @@ export const PROPERTIES: Property[] = [
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
       { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
-      { alt: 'Casa A — exterior y jardín', src: 'casa-a/exterior.webp' },
       { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
       { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
       { alt: 'Casa A — vista del interior', src: 'casa-a/interior.webp' },
@@ -98,15 +96,18 @@ export const PROPERTIES: Property[] = [
     icalUrl: 'https://ical.booking.com/v1/export?t=22d86a32-0a7b-4ff4-a004-92aeee35b089',
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
-      { alt: 'Casa B — fachada y jardín', src: 'casa-b/fachada.jpg' },
-      { alt: 'Casa B — dormitorio principal', src: 'casa-b/dormitorio-principal.jpg' },
-      { alt: 'Casa B — segundo dormitorio', src: 'casa-b/dormitorio-cuchetas.jpg' },
-      { alt: 'Casa B — baño', src: 'casa-b/bano.jpg' },
-      { alt: 'Casa B — jardín', src: 'casa-b/jardin.jpg' },
-      { alt: 'Casa B — patio', src: 'casa-b/exterior.jpg' },
-      { alt: 'Casa B — baño secundario', src: 'casa-b/bano-secundario.jpg' },
-      { alt: 'Casa B — patio de servicio', src: 'casa-b/patio.jpg' },
-      { alt: 'Casa B — lavadero', src: 'casa-b/lavadero.jpg' },
+      { alt: 'Casa B — living comedor con cocina', src: 'casa-b/living-comedor.webp' },
+      { alt: 'Casa B — dormitorio principal con cama doble', src: 'casa-b/dormitorio-principal.webp' },
+      { alt: 'Casa B — segundo dormitorio con cucheta', src: 'casa-b/dormitorio-cuchetas.webp' },
+      { alt: 'Casa B — cocina', src: 'casa-b/cocina.webp' },
+      { alt: 'Casa B — comedor', src: 'casa-b/comedor.webp' },
+      { alt: 'Casa B — sofá cama en el living', src: 'casa-b/sofa-cama.webp' },
+      { alt: 'Casa B — baño', src: 'casa-b/bano.webp' },
+      { alt: 'Casa B — lavatorio', src: 'casa-b/lavatorio.webp' },
+      { alt: 'Casa B — jardín con flores', src: 'casa-b/jardin.webp' },
+      { alt: 'Casa B — dormitorio principal', src: 'casa-b/dormitorio-principal-2.webp' },
+      { alt: 'Casa B — segundo dormitorio', src: 'casa-b/dormitorio-cuchetas-2.webp' },
+      { alt: 'Casa B — comedor y heladera', src: 'casa-b/comedor-2.webp' },
     ],
   },
 ];

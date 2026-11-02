@@ -19,7 +19,14 @@ const { photos, name, class: className = '' } = Astro.props;
     {
       photos.map((photo, i) => (
         <div class="aspect-4/3 w-full shrink-0 snap-start" data-gallery-slide>
-          <PropertyPhotoTile photo={photo} seed={i} class="h-full w-full" sizes="(min-width: 768px) 40vw, 100vw" />
+          {/* Las dos primeras cargan de entrada para que al pasar a la segunda ya esté lista. */}
+          <PropertyPhotoTile
+            photo={photo}
+            seed={i}
+            class="h-full w-full"
+            sizes="(min-width: 768px) 40vw, 100vw"
+            loading={i < 2 ? 'eager' : 'lazy'}
+          />
         </div>
       ))
     }

@@ -8,9 +8,10 @@ interface Props {
   class: string;
   seed?: number;
   sizes?: string;
+  loading?: 'eager' | 'lazy';
 }
 
-const { photo, class: className, seed = 0, sizes = '(min-width: 768px) 40vw, 90vw' } = Astro.props;
+const { photo, class: className, seed = 0, sizes = '(min-width: 768px) 40vw, 90vw', loading = 'lazy' } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/properties/**/*.{jpeg,jpg,png,webp}',
@@ -30,6 +31,7 @@ const resolved = photo.src ? images[`/src/assets/properties/${photo.src}`]?.defa
       sizes={sizes}
       format="webp"
       quality="mid"
+      loading={loading}
     />
   ) : (
     <PlaceholderImage label={photo.alt} seed={seed} class={className} />
