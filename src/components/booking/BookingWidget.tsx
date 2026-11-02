@@ -137,6 +137,7 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
 
   const nights = checkIn && checkOut ? diffNights(checkIn, checkOut) : 0;
   const meetsMinStay = nights >= property.pricing.minNights;
+  const canBook = Boolean(checkIn && checkOut && meetsMinStay);
   const stayRates = checkIn && checkOut ? getStayRates(checkIn, checkOut, property.pricing.seasons) : null;
   const uniformRate = stayRates && stayRates.every((r) => r === stayRates[0]) ? stayRates[0] : null;
   const total = stayRates ? stayRates.reduce((sum, r) => sum + r, 0) : null;
@@ -298,14 +299,25 @@ export default function BookingWidget({ properties, initialSlug }: BookingWidget
             </p>
           )}
 
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-95"
-          >
-            Reservar por WhatsApp
-          </a>
+          {/* Sin fechas válidas no se puede mandar el mensaje: así siempre llega con check-in y check-out. */}
+          {canBook ? (
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-95"
+            >
+              Reservar por WhatsApp
+            </a>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-stone-200 px-6 py-3.5 text-sm font-semibold text-stone-500"
+            >
+              {checkIn && checkOut ? `Elegí al menos ${property.pricing.minNights} noches` : 'Elegí las fechas para reservar'}
+            </button>
+          )}
           <p className="mt-3 text-center text-xs text-stone-400">
             Coordinás y confirmás la reserva directamente con nosotros por WhatsApp.
           </p>
