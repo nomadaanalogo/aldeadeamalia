@@ -24,6 +24,9 @@ export const SITE = {
   ogTitle: 'La Aldea de Amalia - 2 casas con cochera, parrilla y amplio jardín',
   metaDescription:
     'Alquiler de casas para hasta 5 huéspedes en el sur de Mar del Plata, cerca de Mute y las playas de Punta Mogotes. Consultá disponibilidad y reservá por WhatsApp.',
+  // Descripción al compartir el link (WhatsApp, Facebook, etc.).
+  ogDescription:
+    'Alquiler de casas para hasta 5 huéspedes en el sur de Mar del Plata, cerca del Coto y de las playas de Punta Mogotes. Consultá disponibilidad y reservá por WhatsApp.',
   url: 'https://aldeadeamalia.com',
 };
 
@@ -58,34 +61,9 @@ const SHARED_AMENITIES: Property['amenities'] = [
  */
 export const PROPERTIES: Property[] = [
   {
-    id: 'casa-a',
-    slug: 'casa-a',
-    name: 'Casa A',
-    tagline: 'Dúplex cómodo para toda la familia',
-    description:
-      'Dúplex para hasta 5 huéspedes: cocina, living y baño en planta baja, con un dormitorio abajo y otro arriba. Arriba hay una cama doble; abajo, una cucheta y una cama individual. Cómoda y luminosa, ideal para venir en familia.',
-    capacity: { guests: 5, bedrooms: 2, beds: 4, bathrooms: 1 },
-    amenities: SHARED_AMENITIES,
-    pricing: {
-      currency: 'USD',
-      seasons: SEASON_RATES,
-      minNights: 2,
-    },
-    icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
-    whatsappNumber: WHATSAPP_NUMBER,
-    photos: [
-      { alt: 'Casa A — living comedor', src: 'casa-a/living-comedor.webp' },
-      { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
-      { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
-      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
-      { alt: 'Casa A — mesada con microondas y pava eléctrica', src: 'casa-a/mesada.webp' },
-      { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
-    ],
-  },
-  {
     id: 'casa-b',
     slug: 'casa-b',
-    name: 'Casa B',
+    name: 'Casa B (dos cuartos)',
     tagline: 'Ideal para compartir en familia o con amigos',
     description:
       'Casa de dos dormitorios para hasta 5 huéspedes: uno con cama doble y otro con litera, más un sofá cama en el living. Cocina, living y baño, todo pensado para que estés como en tu casa.',
@@ -111,6 +89,34 @@ export const PROPERTIES: Property[] = [
       { alt: 'Casa B — dormitorio principal', src: 'casa-b/dormitorio-principal-2.webp' },
       { alt: 'Casa B — segundo dormitorio', src: 'casa-b/dormitorio-cuchetas-2.webp' },
       { alt: 'Casa B — comedor y heladera', src: 'casa-b/comedor-2.webp' },
+    ],
+  },
+  {
+    id: 'casa-a',
+    slug: 'casa-a',
+    name: 'Casa A (dúplex)',
+    tagline: 'Dúplex cómodo para toda la familia',
+    description:
+      'Dúplex para hasta 5 huéspedes: cocina, living y baño en planta baja, con un dormitorio abajo y otro arriba. Arriba hay una cama doble; abajo, una cucheta y una cama individual. Cómoda y luminosa, ideal para venir en familia.',
+    capacity: { guests: 5, bedrooms: 2, beds: 4, bathrooms: 1 },
+    amenities: SHARED_AMENITIES,
+    pricing: {
+      currency: 'USD',
+      seasons: SEASON_RATES,
+      minNights: 2,
+    },
+    icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
+    whatsappNumber: WHATSAPP_NUMBER,
+    photos: [
+      { alt: 'Casa A — comedor', src: 'casa-a/comedor-portada.webp' },
+      { alt: 'Casa A — living comedor', src: 'casa-a/living-comedor.webp' },
+      { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
+      { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
+      { alt: 'Casa A — dormitorio de arriba con cama doble', src: 'casa-a/dormitorio-arriba.webp' },
+      { alt: 'Casa A — dormitorio con cucheta y cama individual', src: 'casa-a/dormitorio-cuchetas.webp' },
+      { alt: 'Casa A — comedor y banco de madera', src: 'casa-a/comedor.webp' },
+      { alt: 'Casa A — mesada con microondas y pava eléctrica', src: 'casa-a/mesada.webp' },
+      { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
     ],
   },
 ];
