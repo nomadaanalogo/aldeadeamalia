@@ -109,12 +109,10 @@ export const PROPERTIES: Property[] = [
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
       { alt: 'Casa A — comedor', src: 'casa-a/comedor-portada.webp' },
-      { alt: 'Casa A — living comedor', src: 'casa-a/living-comedor.webp' },
       { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
       { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
       { alt: 'Casa A — dormitorio de arriba con cama doble', src: 'casa-a/dormitorio-arriba.webp' },
       { alt: 'Casa A — dormitorio con cucheta y cama individual', src: 'casa-a/dormitorio-cuchetas.webp' },
-      { alt: 'Casa A — comedor y banco de madera', src: 'casa-a/comedor.webp' },
       { alt: 'Casa A — mesada con microondas y pava eléctrica', src: 'casa-a/mesada.webp' },
       { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
     ],
