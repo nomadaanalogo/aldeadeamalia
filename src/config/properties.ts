@@ -20,6 +20,8 @@ export const SITE = {
   // Título y descripción para buscadores (SEO) — separados del copy del hero para poder
   // meter las palabras clave de búsqueda sin tocar el tono cercano del sitio.
   metaTitle: 'La Aldea de Amalia — Alquiler de casas en Mar del Plata (Zona Sur)',
+  // Título al compartir el link (WhatsApp, Facebook, etc.).
+  ogTitle: 'La Aldea de Amalia - 2 casas con cochera, parrilla y amplio jardín',
   metaDescription:
     'Alquiler de casas para hasta 5 huéspedes en el sur de Mar del Plata, cerca de Mute y las playas de Punta Mogotes. Consultá disponibilidad y reservá por WhatsApp.',
   url: 'https://aldeadeamalia.com',
@@ -72,10 +74,11 @@ export const PROPERTIES: Property[] = [
     icalUrl: 'https://ical.booking.com/v1/export?t=a9418b3b-2f86-4a6b-9446-1efd1206e094',
     whatsappNumber: WHATSAPP_NUMBER,
     photos: [
-      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
-      { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
+      { alt: 'Casa A — living comedor', src: 'casa-a/living-comedor.webp' },
       { alt: 'Casa A — cocina', src: 'casa-a/cocina.webp' },
-      { alt: 'Casa A — vista del interior', src: 'casa-a/interior.webp' },
+      { alt: 'Casa A — living con escalera al dormitorio de arriba', src: 'casa-a/living-escalera.webp' },
+      { alt: 'Casa A — comedor', src: 'casa-a/comedor.webp' },
+      { alt: 'Casa A — mesada con microondas y pava eléctrica', src: 'casa-a/mesada.webp' },
       { alt: 'Casa A — baño', src: 'casa-a/bano.webp' },
     ],
   },

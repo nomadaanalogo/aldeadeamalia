@@ -11,6 +11,9 @@ interface Props {
 const { title = SITE.metaTitle, description = SITE.metaDescription } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = title === SITE.metaTitle ? title : `${title} | ${SITE.name}`;
+const socialTitle = title === SITE.metaTitle ? SITE.ogTitle : pageTitle;
+// El ?v= obliga a WhatsApp/Facebook a bajar la imagen de nuevo cuando cambia.
+const ogImage = new URL('/og-image.jpg?v=2', Astro.site);
 ---
 
 <!doctype html>
@@ -31,19 +34,19 @@ const pageTitle = title === SITE.metaTitle ? title : `${title} | ${SITE.name}`;
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:title" content={pageTitle} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="es_AR" />
-    <meta property="og:image" content={new URL('/og-image.jpg', Astro.site)} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/og-image.jpg', Astro.site)} />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
