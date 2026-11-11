@@ -13,7 +13,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = title === SITE.metaTitle ? title : `${title} | ${SITE.name}`;
 const socialTitle = title === SITE.metaTitle ? SITE.ogTitle : pageTitle;
 // El ?v= obliga a WhatsApp/Facebook a bajar la imagen de nuevo cuando cambia.
-const ogImage = new URL('/og-image.jpg?v=2', Astro.site);
+const ogImage = new URL('/og-image.jpg?v=3', Astro.site);
 ---
 
 <!doctype html>
